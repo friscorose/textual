@@ -5,7 +5,7 @@ from rich.measure import Measurement
 from rich.segment import Segment
 from rich.style import Style, StyleType
 
-DIGITS = " 0123456789+-^x:"
+DIGITS = " 0123456789AbCdEF+-^x:"
 DIGITS3X3 = """\
 
 
@@ -40,6 +40,24 @@ DIGITS3X3 = """\
 ┏━┓
 ┗━┫
 ╺━┛
+┏━┓
+┣━┫
+╹ ╹
+╻  
+┣━┓
+┗━┛
+┏━╸
+┃  
+┗━╸
+  ╻
+┏━┫
+┗━┛
+┏━╸
+┣━ 
+┗━╸
+┏━╸
+┣━ 
+╹  
 
 ╺╋╸
 
@@ -92,6 +110,7 @@ class Digits:
         row3 = digit_pieces[2].append
 
         for character in self._text:
+            if character == ".": character = "•"
             try:
                 position = DIGITS.index(character) * 3
             except ValueError:
