@@ -5,7 +5,7 @@ from rich.measure import Measurement
 from rich.segment import Segment
 from rich.style import Style, StyleType
 
-DIGITS = " 0123456789AbCdEF+-^x:"
+DIGITS = " 0123456789AbCdEFGhiJKLmnoPqrStUvWXYZ+-^x:"
 DIGITS3X3 = """\
 
 
@@ -58,6 +58,66 @@ DIGITS3X3 = """\
 ┏━╸
 ┣━ 
 ╹  
+┏━╸
+┃ ╻ 
+┗━┛
+╻  
+┣━┓
+╹ ╹
+   
+  ╻
+  ╹
+  ╻
+  ┃
+┗━┛
+┏━╸
+┣━┓
+╹ ╹
+╻  
+┃   
+┗━╸
+╺━╸
+┏━┓
+╹ ╹
+   
+┏━┓
+╹ ╹
+   
+┏━┓
+┗━┛
+┏━┓
+┣━┛
+╹  
+┏━┓
+┗━┫
+  ╹
+   
+┏━╸
+╹  
+┏━╸
+┗━┓
+╺━┛
+╻  
+┣━╸ 
+┗━╸
+╻ ╻
+┃ ┃
+┗━┛
+   
+╻ ╻
+┗━┛
+╻ ╻
+┗━┛
+╺━╸
+╻ ╻
+┣━┫
+╹ ╹
+╻ ╻
+┗━┫
+╺━┛
+╺━┓
+┏━┛
+┗━╸
 
 ╺╋╸
 
