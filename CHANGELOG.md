@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [0.74.0] - 2024-07-25
+
+### Fixed
+
+- Fixed issues in Kitty terminal after exiting app https://github.com/Textualize/textual/issues/4779
+- Fixed exception when removing Selects https://github.com/Textualize/textual/pull/4786
+- Fixed issue with non-clickable Footer keys https://github.com/Textualize/textual/pull/4798
+- Fixed issue with recompose not working from Mount handler https://github.com/Textualize/textual/pull/4802
+
+### Changed
+
+- Calling `Screen.dismiss` with no arguments will invoke the screen callback with `None` (previously the callback wasn't invoke at all). https://github.com/Textualize/textual/pull/4795
+
+## [0.73.0] - 2024-07-18
 
 ### Added
 
@@ -19,6 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add `Tree.move_cursor` to programmatically move the cursor without selecting the node https://github.com/Textualize/textual/pull/4753
 - Added `Footer` component style handling of padding for the key/description https://github.com/Textualize/textual/pull/4651
 - `StringKey` is now exported from `data_table` https://github.com/Textualize/textual/pull/4760
+- `TreeNode.add` and `TreeNode.add_leaf` now accepts `before` and `after` arguments to position a new node https://github.com/Textualize/textual/pull/4772
+- Added a `gradient` parameter to the `ProgressBar` widget https://github.com/Textualize/textual/pull/4774
 
 ### Fixed
 
@@ -32,6 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed message handlers not working when message types are assigned as the value of class vars https://github.com/Textualize/textual/pull/3940
 - Fixed `CommandPalette` not focusing the input when opened when `App.AUTO_FOCUS` doesn't match the input https://github.com/Textualize/textual/pull/4763
 - `SelectionList.SelectionToggled` will now be sent for each option when a bulk toggle is performed (e.g. `toggle_all`). Previously no messages were sent at all. https://github.com/Textualize/textual/pull/4759
+- Fixed focus styles not being updated on blur https://github.com/Textualize/textual/pull/4771
 
 ### Changed
 
@@ -2217,6 +2233,8 @@ https://textual.textualize.io/blog/2022/11/08/version-040/#version-040
 - New handler system for messages that doesn't require inheritance
 - Improved traceback handling
 
+[0.74.0]: https://github.com/Textualize/textual/compare/v0.73.0...v0.74.0
+[0.73.0]: https://github.com/Textualize/textual/compare/v0.72.0...v0.73.0
 [0.72.0]: https://github.com/Textualize/textual/compare/v0.71.0...v0.72.0
 [0.71.0]: https://github.com/Textualize/textual/compare/v0.70.0...v0.71.0
 [0.70.0]: https://github.com/Textualize/textual/compare/v0.69.0...v0.70.0

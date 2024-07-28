@@ -1,6 +1,7 @@
 """
-A DOMNode is a base class for any object within the Textual Document Object Model,
+The module contains `DOMNode`, the base class for any object within the Textual Document Object Model,
 which includes all Widgets, Screens, and Apps.
+
 """
 
 from __future__ import annotations
@@ -31,7 +32,6 @@ from rich.tree import Tree
 from ._context import NoActiveAppError, active_message_pump
 from ._node_list import NodeList
 from ._types import WatchCallbackType
-from ._worker_manager import WorkerManager
 from .binding import Binding, BindingType, _Bindings
 from .color import BLACK, WHITE, Color
 from .css._error_tools import friendly_list
@@ -44,6 +44,7 @@ from .message_pump import MessagePump
 from .reactive import Reactive, ReactiveError, _watch
 from .timer import Timer
 from .walk import walk_breadth_first, walk_depth_first
+from .worker_manager import WorkerManager
 
 if TYPE_CHECKING:
     from typing_extensions import Self, TypeAlias
@@ -513,7 +514,7 @@ class DOMNode(MessagePump):
         """Get a "component" styles object (must be defined in COMPONENT_CLASSES classvar).
 
         Args:
-            name: Name of the component.
+            names: Names of the components.
 
         Raises:
             KeyError: If the component class doesn't exist.
@@ -1536,7 +1537,7 @@ class DOMNode(MessagePump):
 
         Args:
             action: The name of an action.
-            action_parameters: A tuple of any action parameters.
+            parameters: A tuple of any action parameters.
 
         Returns:
             `True` if the action is enabled+visible,
