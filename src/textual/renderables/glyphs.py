@@ -58,7 +58,7 @@ DIGITS3X3 = """\
 """.splitlines()
 
 
-class Digits:
+class Glyphs:
     """Renders a 3X3 unicode 'font' for numerical values.
 
     Args:

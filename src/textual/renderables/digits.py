@@ -4,6 +4,8 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.measure import Measurement
 from rich.segment import Segment
 from rich.style import Style, StyleType
+from pkgutil import get_data as LoadGlyphs
+import json
 
 DIGITS = " 0123456789+-^x:"
 DIGITS3X3 = """\
@@ -71,6 +73,11 @@ class Digits:
         self._text = text
         self._style = style
 
+
+    font = "box/sans/default.json"
+    glyph_faces = LoadGlyphs('textual' , 'renderables/glyphs/' + font )
+    GLYPHS = json.loads( glyph_faces )
+
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
@@ -107,6 +114,20 @@ class Digits:
         for line in digit_pieces:
             yield Segment("".join(line), style)
             yield new_line
+
+    @classmethod
+    def get_height(cls, text: str) -> int:
+        """Calculate the width without rendering.
+
+        Args:
+            text: Text which may be displayed in the `Digits` widget.
+
+        Returns:
+            width of the text (in cells).
+        """
+        #Read from the max of default or tcss glyphs fixed height 
+        height = 3
+        return height
 
     @classmethod
     def get_width(cls, text: str) -> int:
