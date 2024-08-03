@@ -58,8 +58,8 @@ DIGITS3X3 = """\
 """.splitlines()
 
 
-class Digits:
-    """Renders a 3X3 unicode 'font' for numerical values.
+class Glyphs:
+    """Renders a nXm unicode 'font' for scaled text.
 
     Args:
         text: Text to display.
