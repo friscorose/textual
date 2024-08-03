@@ -66,6 +66,8 @@ class Digits(Widget):
             raise TypeError("value must be a str")
         layout_required = len(value) != len(self._value) or (
             DigitsRenderable.get_width(self._value) != DigitsRenderable.get_width(value)
+        ) or (
+            DigitsRenderable.get_height(self._value) != DigitsRenderable.get_height(value)
         )
         self._value = value
         self.refresh(layout=layout_required)
@@ -101,4 +103,5 @@ class Digits(Widget):
         Returns:
             The height of the content.
         """
-        return 3  # Always 3 lines
+        return DigitsRenderable.get_height(self._value)
+        #return 3  # Always 3 lines

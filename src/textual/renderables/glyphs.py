@@ -59,7 +59,7 @@ DIGITS3X3 = """\
 
 
 class Glyphs:
-    """Renders a nXm unicode 'font' for scaled text.
+    """Renders a 3X3 unicode 'font' for numerical values.
 
     Args:
         text: Text to display.
