@@ -2304,16 +2304,16 @@ class App(Generic[ReturnType], DOMNode):
         if widget is None:
             if self.mouse_over is not None:
                 try:
-                    self.mouse_over.post_message(events.Leave())
+                    self.mouse_over.post_message(events.Leave(self.mouse_over))
                 finally:
                     self.mouse_over = None
         else:
             if self.mouse_over is not widget:
                 try:
                     if self.mouse_over is not None:
-                        self.mouse_over.post_message(events.Leave())
+                        self.mouse_over.post_message(events.Leave(self.mouse_over))
                     if widget is not None:
-                        widget.post_message(events.Enter())
+                        widget.post_message(events.Enter(widget))
                 finally:
                     self.mouse_over = widget
 
@@ -3679,3 +3679,13 @@ class App(Generic[ReturnType], DOMNode):
             # NOTE: There is no call to publish the resume signal here, this
             # will be handled by the driver posting a SignalResume event
             # (see the event handler on App._resume_signal) above.
+
+    def open_url(self, url: str, *, new_tab: bool = True) -> None:
+        """Open a URL in the default web browser.
+
+        Args:
+            url: The URL to open.
+            new_tab: Whether to open the URL in a new tab.
+        """
+        if self._driver is not None:
+            self._driver.open_url(url, new_tab)

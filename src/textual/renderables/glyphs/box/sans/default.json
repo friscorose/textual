@@ -65,6 +65,79 @@
         "┗━┛"
       ]
     },
+    "'":{
+      "align": ["left", "top"],
+      "columns":1,
+      "lines": 1,
+      "glyph": [
+        "┑"
+      ]
+    },
+    "(": {
+      "columns":1,
+      "lines": 3,
+      "glyph": [
+        "┎",
+        "┃",
+        "┖"
+      ]
+    },
+    ")": {
+      "columns":1,
+      "lines": 3,
+      "glyph": [
+        "┒",
+        "┃",
+        "┚"
+      ]
+    },
+    "*":{
+      "align": ["center", "middle"],
+      "columns":1,
+      "lines": 1,
+      "glyph": [
+        "✱
+      ]
+    },
+    "+":{
+      "align": ["center", "middle"],
+      "columns":3,
+      "lines": 1,
+      "glyph": [
+        "╺╋╸"
+      ]
+    },
+    ",":{
+      "align": ["left", "bottom"],
+      "columns":1,
+      "lines": 1,
+      "glyph": [
+        "┑"
+      ]
+    },
+    "-":{
+      "align": ["center", "middle"],
+      "columns":3,
+      "lines": 1,
+      "glyph": [
+        "╺━╸"
+      ]
+    },
+    ".":{
+      "align": ["left", "bottom"],
+      "columns":1,
+      "lines": 1,
+      "glyph": [
+        "•"
+      ]
+    },
+    "/":{
+      "glyph": [
+        "  ╻",
+        "┏━┛",
+        "╹  "
+      ]
+    },
     "0": {
       "columns":3,
       "lines": 3,

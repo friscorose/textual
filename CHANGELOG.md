@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [0.75.1] - 2024-08-02
+
+### Fixed
+
+- Fixed issue with Enter events causing unresponsive UI
+
+## [0.75.0] - 2024-08-01
+
+### Added
+
+- Added `App.open_url` to open URLs in the web browser. When running via the WebDriver, the URL will be opened in the browser that is controlling the app https://github.com/Textualize/textual/pull/4819
+- Added `Widget.is_mouse_over` https://github.com/Textualize/textual/pull/4818
+- Added `node` attribute to `events.Enter` and `events.Leave` https://github.com/Textualize/textual/pull/4818
+
+### Changed
+
+- `events.Enter` and `events.Leave` events now bubble. https://github.com/Textualize/textual/pull/4818
+- Renamed `Widget.mouse_over` to `Widget.mouse_hover` https://github.com/Textualize/textual/pull/4818
+
+### Fixed
+
+- Fixed issue with `mutate_reactive` and data binding https://github.com/Textualize/textual/pull/4828
+
 ## [0.74.0] - 2024-07-25
 
 ### Fixed
@@ -2233,6 +2257,8 @@ https://textual.textualize.io/blog/2022/11/08/version-040/#version-040
 - New handler system for messages that doesn't require inheritance
 - Improved traceback handling
 
+[0.75.1]: https://github.com/Textualize/textual/compare/v0.75.0...v0.75.1
+[0.75.0]: https://github.com/Textualize/textual/compare/v0.74.0...v0.75.0
 [0.74.0]: https://github.com/Textualize/textual/compare/v0.73.0...v0.74.0
 [0.73.0]: https://github.com/Textualize/textual/compare/v0.72.0...v0.73.0
 [0.72.0]: https://github.com/Textualize/textual/compare/v0.71.0...v0.72.0
