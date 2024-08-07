@@ -414,7 +414,7 @@ class DOMNode(MessagePump):
             self._auto_refresh_timer = None
         if interval is not None:
             self._auto_refresh_timer = self.set_interval(
-                interval, self._automatic_refresh, name=f"auto refresh {self!r}"
+                interval, self.automatic_refresh, name=f"auto refresh {self!r}"
             )
         self._auto_refresh = interval
 
@@ -476,9 +476,16 @@ class DOMNode(MessagePump):
         """Is the node a modal?"""
         return False
 
-    def _automatic_refresh(self) -> None:
-        """Perform an automatic refresh (set with auto_refresh property)."""
-        self.refresh()
+    def automatic_refresh(self) -> None:
+        """Perform an automatic refresh.
+
+        This method is called when you set the `auto_refresh` attribute.
+        You could implement this method if you want to perform additional work
+        during an automatic refresh.
+
+        """
+        if self.display and self.visible:
+            self.refresh()
 
     def __init_subclass__(
         cls,
@@ -994,16 +1001,17 @@ class DOMNode(MessagePump):
 
         for node in reversed(self.ancestors_with_self):
             styles = node.styles
+            has_rule = styles.has_rule
             opacity *= styles.opacity
-            if styles.has_rule("background"):
+            if has_rule("background"):
                 text_background = background + styles.background
                 background += styles.background.multiply_alpha(opacity)
             else:
                 text_background = background
-            if styles.has_rule("color"):
+            if has_rule("color"):
                 color = styles.color
             style += styles.text_style
-            if styles.has_rule("auto_color") and styles.auto_color:
+            if has_rule("auto_color") and styles.auto_color:
                 color = text_background.get_contrast_text(color.a)
 
         style += Style.from_color(
