@@ -93,6 +93,7 @@ class Digits:
         Returns:
             Result of render.
         """
+        #GLYPHS[
         digit_pieces: list[list[str]] = [[], [], []]
         row1 = digit_pieces[0].append
         row2 = digit_pieces[1].append
