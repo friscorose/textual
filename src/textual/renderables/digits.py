@@ -6,6 +6,7 @@ from rich.segment import Segment
 from rich.style import Style, StyleType
 from pkgutil import get_data as LoadGlyphs
 import json
+import math
 
 DIGITS = " 0123456789+-^x:"
 DIGITS3X3 = """\
@@ -84,6 +85,15 @@ class Digits:
         style = console.get_style(self._style)
         yield from self.render(style)
 
+    def get_glyph(self, token: str) -> None:
+        my_glyph = self.GLYPHS['character'][ token ]['glyph']
+        try:
+            my_glyph = my_glyph['bold']
+        except:
+            pass
+        return my_glyph
+            
+
     def render(self, style: Style) -> RenderResult:
         """Render with the given style
 
@@ -93,28 +103,75 @@ class Digits:
         Returns:
             Result of render.
         """
-        #GLYPHS[
-        digit_pieces: list[list[str]] = [[], [], []]
-        row1 = digit_pieces[0].append
-        row2 = digit_pieces[1].append
-        row3 = digit_pieces[2].append
+        monospace = True
+        was_space = True
 
-        for character in self._text:
-            try:
-                position = DIGITS.index(character) * 3
-            except ValueError:
-                row1(" ")
-                row2(" ")
-                row3(character)
+        try:
+            bbox_height = self.GLYPHS['fixed lines']
+            bbox_width = self.GLYPHS['fixed columns']
+            bbox_align = self.GLYPHS['fixed align']
+            faces_data = self.GLYPHS['character']
+        except:
+            raise Exception("missing required glyph face data")
+
+        g_strings: list[list[str]] =[[] for i in range(1, bbox_height+1)]
+
+        for token in self._text:
+            face = faces_data.get(token, token)
+            Hhint = face.get('lines', bbox_height)
+            Whint = face.get('columns', bbox_width)
+            Ahint = face.get('align', bbox_align)
+            face = face.get('glyph', face )
+            if isinstance( face, dict ):
+                face = face.get('bold', face )
+
+            if Whint == bbox_width:
+                l_pad = r_pad = 0
             else:
-                row1(DIGITS3X3[position].ljust(3))
-                row2(DIGITS3X3[position + 1].ljust(3))
-                row3(DIGITS3X3[position + 2].ljust(3))
+                if Ahint[0] == "left":
+                    l_pad = 0
+                    r_pad = bbox_width - Whint
+                elif Ahint[0] == "right":
+                    r_pad = 0
+                    l_pad = bbox_width - Whint
+                else:
+                    pad = (bbox_width - Whint)/2.0
+                    if was_space:
+                        l_pad = math.ceil(pad)
+                        r_pad = math.floor(pad)
+                    else:
+                        r_pad = math.ceil(pad)
+                        l_pad = math.floor(pad)
+            if token != " ":
+                was_space = False
+            else: 
+                was_space = True
 
-        new_line = Segment.line()
-        for line in digit_pieces:
-            yield Segment("".join(line), style)
-            yield new_line
+            if Hhint == bbox_height:
+                t_pad = b_pad = 0
+            else:
+                if Ahint[1] == "top":
+                    t_pad = 0
+                    b_pad = bbox_height - Hhint
+                elif Ahint[1] == "bottom":
+                    b_pad = 0
+                    t_pad = bbox_height - Hhint
+                else:
+                    pad = (bbox_height - Hhint)/2.0
+                    t_pad = math.ceil(pad)
+                    b_pad = math.floor(pad)
+
+            for n, g_row in enumerate( g_strings ):
+                if n < t_pad or n >= t_pad+Hhint:
+                    g_row.append( " "*Whint )
+                else:
+                    g_row.append( " "*l_pad + face[n - t_pad] + " "*r_pad )
+
+        for g_row in g_strings:
+            yield Segment("".join(g_row), style)
+            yield Segment.line()
+
+
 
     @classmethod
     def get_height(cls, text: str) -> int:
