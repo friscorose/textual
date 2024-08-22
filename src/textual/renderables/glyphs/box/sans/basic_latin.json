@@ -1,10 +1,10 @@
 {
   "__comment__":"ascii",
-  "_block": "basic latin",
+  "block": "basic latin",
   "_code points": "\u0020-\u007e",
   "_version":0.1,
   "_family": "box sans",
-  "_face": "default",
+  "_face": "basic_latin",
   "tabular":false,
   "kerning":1,
   "align": ["center", "bottom"],
@@ -20,20 +20,31 @@
     },
     "!": {
       "columns":1,
-      "lines": 3,
-      "glyph": [
-        "╻",
-        "┃",
-        "•"
-      ]
+      "glyph": {
+        "normal":[
+          "╷",
+          "│",
+          "."
+        ],
+        "bold":[
+          "╻",
+          "┃",
+          "•"
+        ]
+      }
     },
     "\"":{
       "align": ["center", "top"],
       "columns":2,
       "lines": 1,
-      "glyph": [
-        "╻╻"
-      ]
+      "glyph": {
+        "normal":[
+          "╷╷"
+        ],
+        "bold":[
+          "╻╻"
+        ]
+      }
     },
     "#":{
       "align": ["center", "middle"],
@@ -69,13 +80,17 @@
       "align": ["left", "top"],
       "columns":1,
       "lines": 1,
-      "glyph": [
-        "┑"
-      ]
+      "glyph": {
+        "normal":[
+          "┑"
+        ],
+        "bold":[
+          "┑"
+        ]
+      }
     },
     "(": {
       "columns":1,
-      "lines": 3,
       "glyph": [
         "┎",
         "┃",
@@ -84,7 +99,6 @@
     },
     ")": {
       "columns":1,
-      "lines": 3,
       "glyph": [
         "┒",
         "┃",
@@ -101,7 +115,6 @@
     },
     "+":{
       "align": ["center", "middle"],
-      "columns":3,
       "lines": 1,
       "glyph": [
         "╺╋╸"
@@ -118,20 +131,29 @@
     },
     "-":{
       "align": ["center", "middle"],
-      "columns":3,
       "lines": 1,
-      "glyph": [
-        "╺━╸"
-      ]
+      "glyph": {
+        "normal":[
+          "╶─╴"
+        ],
+        "bold":[
+          "╺━╸"
+        ]
+      }
     },
     ".":{
       "align": ["left", "bottom"],
       "columns":1,
       "lines": 1,
       "kerning": 0,
-      "glyph": [
-        "•"
-      ]
+      "glyph": {
+        "normal":[
+          "."
+        ],
+        "bold":[
+          "•"
+        ]
+      }
     },
     "/":{
       "glyph": [
@@ -141,7 +163,6 @@
       ]
     },
     "0": {
-      "columns":3,
       "glyph": {
         "normal":[
           "┌─┐",
@@ -301,7 +322,6 @@
     },
     "<": {
       "columns":2,
-      "lines": 3,
       "glyph": [
         " ╱",
         "⟨ ",

@@ -1,17 +1,19 @@
 {
-  "family": "box sans",
-  "face": "seven segment",
-  "block": "basic latin",
-  "weights":["regular", "bold"],
-  "version":0.1,
-  "weights":["regular", "bold"],
-  "fixed align": ["center", "bottom"],
+  "__comment__":"alpha-numeric",
+  "_block": "basic latin",
+  "_code points": "\u0041-\u005a,\u0061-\u007a,",
+  "_version":0.1,
+  "_family": "box sans",
+  "_face": "seven_segment",
+  "tabular":false,
+  "kerning":0,
+  "align": ["center", "bottom"],
   "fixed columns":3,
   "fixed lines": 3,
   "character": {
     "A": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -24,7 +26,7 @@
     },
     "B": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -37,7 +39,7 @@
     },
     "C": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -50,7 +52,7 @@
     },
     "D": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -63,7 +65,7 @@
     },
     "E": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -76,7 +78,7 @@
     },
     "F": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -89,7 +91,7 @@
     },
     "G": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -102,7 +104,7 @@
     },
     "H": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -116,9 +118,8 @@
     "I": {
       "align": ["left", "bottom"],
       "columns":1,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "╷",
           "│",
           "╵"
@@ -132,7 +133,7 @@
     },
     "J": {
       "glyph": {
-        "regular":[
+        "normal":[
           "  ╷",
           "╷ │",
           "└─┘"
@@ -145,7 +146,7 @@
     },
     "K": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -158,7 +159,7 @@
     },
     "L": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -171,7 +172,7 @@
     },
     "M": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -184,7 +185,7 @@
     },
     "N": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -197,7 +198,7 @@
     },
     "O": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -210,7 +211,7 @@
     },
     "P": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -223,7 +224,7 @@
     },
     "Q": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -236,7 +237,7 @@
     },
     "R": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -249,7 +250,7 @@
     },
     "S": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -262,7 +263,7 @@
     },
     "T": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -275,7 +276,7 @@
     },
     "U": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -288,7 +289,7 @@
     },
     "V": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -301,7 +302,7 @@
     },
     "W": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -314,7 +315,7 @@
     },
     "X": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -327,7 +328,7 @@
     },
     "Y": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -340,7 +341,7 @@
     },
     "Z": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -353,7 +354,7 @@
     },
     "a": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -366,7 +367,7 @@
     },
     "b": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -379,7 +380,7 @@
     },
     "c": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -392,7 +393,7 @@
     },
     "d": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -405,7 +406,7 @@
     },
     "e": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -418,7 +419,7 @@
     },
     "f": {
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -430,10 +431,8 @@
         ]
     },
     "g": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -445,10 +444,8 @@
         ]
     },
     "h": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -460,10 +457,8 @@
         ]
     },
     "i": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -475,10 +470,8 @@
         ]
     },
     "j": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -490,10 +483,8 @@
         ]
     },
     "k": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -505,10 +496,8 @@
         ]
     },
     "l": {
-      "columns":3,
-      "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -523,7 +512,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -538,7 +527,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -553,7 +542,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -568,7 +557,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -583,7 +572,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -598,7 +587,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -613,7 +602,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -628,7 +617,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -643,7 +632,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -658,7 +647,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -673,7 +662,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -688,7 +677,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -703,7 +692,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"
@@ -718,7 +707,7 @@
       "columns":3,
       "lines": 3,
       "glyph": {
-        "regular":[
+        "normal":[
           "┌─┐",
           "│ │",
           "└─┘"

@@ -31,6 +31,26 @@ class Digits:
     height = GLYPHS['fixed lines']
     width = GLYPHS['fixed columns']
 
+    def load_glyphs(self, family="box/sans", face="basic_latin") -> None:
+        glyph_face = get_data('textual' ,
+                              'renderables/glyphs/' +
+                              family + "/" +
+                              face + ".json" )
+        glyphs = json.loads( glyph_face )
+        fallback = glyphs.get('block', face).replace(" ", "_")
+        if fallback == face:
+            GLYPHS = glyphs
+        else:
+            glyph_face = get_data('textual' ,
+                                  'renderables/glyphs/' +
+                                  family + "/" +
+                                  fallback + ".json" )
+            GLYPHS = json.loads( glyph_face )
+            for key in GLYPHS['character'].keys():
+                if key in glyphs['character']:
+                    GLYPHS['character'][key] = glyphs['character'][key]
+        return GLYPHS
+
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
