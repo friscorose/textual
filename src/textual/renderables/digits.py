@@ -25,7 +25,7 @@ class Digits:
         self._style = style
 
 
-    glyph_family = "box/sans/default.json"
+    glyph_family = "box/sans/basic_latin.json"
     glyph_faces = LoadGlyphs('textual' , 'renderables/glyphs/' + glyph_family )
     GLYPHS = json.loads( glyph_faces )
     height = GLYPHS['fixed lines']
