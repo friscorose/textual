@@ -8,6 +8,7 @@ docs/build
 docs/source/_build
 tools/*.txt
 playground/
+.*.sw*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
