@@ -5,8 +5,9 @@
   "_version":0.1,
   "_family": "box sans",
   "_face": "basic_latin",
-  "tabular":false,
-  "kerning":1,
+  "monospace":false,
+  "tracking":1,
+  "adjacent pairs":["  ", "-7"],
   "align": ["center", "bottom"],
   "fixed columns":3,
   "fixed lines": 3,
@@ -37,6 +38,7 @@
       "align": ["center", "top"],
       "columns":2,
       "lines": 1,
+      "kerning": false,
       "glyph": {
         "normal":[
           "╷╷"
@@ -77,9 +79,10 @@
       ]
     },
     "'":{
-      "align": ["left", "top"],
+      "align": ["center", "top"],
       "columns":1,
       "lines": 1,
+      "kerning": false,
       "glyph": {
         "normal":[
           "┑"
@@ -124,7 +127,7 @@
       "align": ["left", "bottom"],
       "columns":1,
       "lines": 1,
-      "kerning": 0,
+      "kerning": false,
       "glyph": [
         "┑"
       ]
@@ -145,7 +148,7 @@
       "align": ["left", "bottom"],
       "columns":1,
       "lines": 1,
-      "kerning": 0,
+      "kerning": false,
       "glyph": {
         "normal":[
           "."

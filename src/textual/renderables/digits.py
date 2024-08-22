@@ -8,6 +8,8 @@ from rich.style import Style, StyleType
 from pkgutil import get_data as LoadGlyphs
 import json
 import math
+#from textual import log
+#log("stuff")
 
 
 class Digits:
@@ -31,26 +33,6 @@ class Digits:
     height = GLYPHS['fixed lines']
     width = GLYPHS['fixed columns']
 
-    def load_glyphs(self, family="box/sans", face="basic_latin") -> None:
-        glyph_face = get_data('textual' ,
-                              'renderables/glyphs/' +
-                              family + "/" +
-                              face + ".json" )
-        glyphs = json.loads( glyph_face )
-        fallback = glyphs.get('block', face).replace(" ", "_")
-        if fallback == face:
-            GLYPHS = glyphs
-        else:
-            glyph_face = get_data('textual' ,
-                                  'renderables/glyphs/' +
-                                  family + "/" +
-                                  fallback + ".json" )
-            GLYPHS = json.loads( glyph_face )
-            for key in GLYPHS['character'].keys():
-                if key in glyphs['character']:
-                    GLYPHS['character'][key] = glyphs['character'][key]
-        return GLYPHS
-
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
@@ -72,32 +54,33 @@ class Digits:
             bbox_height = self.GLYPHS['fixed lines']
             bbox_width = self.GLYPHS['fixed columns']
             bbox_align = self.GLYPHS['align']
-            bbox_kerning = self.GLYPHS['kerning']
-            bbox_tabular = self.GLYPHS['tabular']
+            bbox_tracking = self.GLYPHS['tracking']
+            bbox_monospace = self.GLYPHS['monospace']
+            Apairs = self.GLYPHS['adjacent pairs']
             faces_data = self.GLYPHS['character']
         except:
             raise Exception("missing required glyph face data")
 
-        was_space = True
+        last_token = " "
         g_strings: list[list[str]] =[[] for i in range(1, bbox_height+1)]
 
         for token in text:
             default = {"columns":1,"lines":1,"glyph":[token]}
             face = faces_data.get(token, default)
-            Thint = face.get('tabular', bbox_tabular)
-            Khint = face.get('kerning', bbox_kerning)
+            Mhint = face.get('monospace', bbox_monospace)
+            Thint = face.get('tracking', bbox_tracking)
             Hhint = face.get('lines', bbox_height)
             Whint = face.get('columns', bbox_width)
             Ahint = face.get('align', bbox_align)
-            face = face.get('glyph', face )
-            if isinstance( face, dict ):
+            glyph = face.get('glyph', face )
+            if isinstance( glyph, dict ):
                 if style.bold:
-                    face = face.get('bold', face )
+                    glyph = glyph.get('bold', glyph )
                 else:
-                    face = face.get('normal', face )
+                    glyph = glyph.get('normal', glyph )
 
             #determine horizontal glyph placement in supercell
-            if Thint:
+            if Mhint:
                 if Ahint[0] == "left":
                     l_pad = 0
                     r_pad = bbox_width - Whint
@@ -106,7 +89,7 @@ class Digits:
                     r_pad = 0
                 else:
                     pad = (bbox_width - Whint)/2.0
-                    if was_space:
+                    if last_token == " ":
                         l_pad = math.ceil(pad)
                         r_pad = math.floor(pad)
                     else:
@@ -114,7 +97,22 @@ class Digits:
                         r_pad = math.ceil(pad)
             else:
                 l_pad = r_pad = 0
-            r_pad += math.ceil( Khint )
+
+            #determine horizontal kerning and tracking adjustment
+            if last_token+token not in Apairs and Thint > 0:
+                last_face = faces_data.get(last_token, {})
+                Khint = face.get('kerning', True)
+                last_Khint = last_face.get('kerning', True)
+                last_Whint = last_face.get('columns', bbox_width)
+                if last_Khint and Khint:
+                    wedge = math.ceil( Thint )
+                else:
+                    wedge = math.ceil( Thint - last_Whint )
+                if wedge > 0:
+                    if Ahint[0] == "left":
+                        r_pad += wedge
+                    else:
+                        l_pad += wedge
 
             #determine vertical glyph placement in supercell
             if Hhint == bbox_height:
@@ -134,12 +132,12 @@ class Digits:
             #construct glyph supercell sequence
             for n, g_row in enumerate( g_strings ):
                 if n < t_pad or n >= t_pad+Hhint:
-                    g_data = " "*Whint
+                    g_spot = " "*Whint
                 else:
-                    g_data = face[n - t_pad] 
-                g_row.append( " "*l_pad + g_data + " "*r_pad )
+                    g_spot = glyph[n - t_pad] 
+                g_row.append( " "*l_pad + g_spot + " "*r_pad )
 
-            was_space = token == " "
+            last_token = token
             #process next token or finished
 
         self.height = len( g_strings )
