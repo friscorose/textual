@@ -56,7 +56,7 @@ class Digits:
             bbox_align = self.GLYPHS['align']
             bbox_tracking = self.GLYPHS['tracking']
             bbox_monospace = self.GLYPHS['monospace']
-            Apairs = self.GLYPHS['adjacent pairs']
+            bbox_apairs = self.GLYPHS['adjacent pairs']
             faces_data = self.GLYPHS['character']
         except:
             raise Exception("missing required glyph face data")
@@ -99,7 +99,7 @@ class Digits:
                 l_pad = r_pad = 0
 
             #determine horizontal kerning and tracking adjustment
-            if last_token+token not in Apairs and Thint > 0:
+            if last_token+token not in bbox_apairs and Thint > 0:
                 last_face = faces_data.get(last_token, {})
                 Khint = face.get('kerning', True)
                 last_Khint = last_face.get('kerning', True)
@@ -138,7 +138,7 @@ class Digits:
                 g_row.append( " "*l_pad + g_spot + " "*r_pad )
 
             last_token = token
-            #process next token or finished
+            #process next token or loop finished
 
         self.height = len( g_strings )
         self.width = len( g_strings[0] )

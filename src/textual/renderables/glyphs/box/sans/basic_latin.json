@@ -7,12 +7,13 @@
   "_face": "basic_latin",
   "monospace":false,
   "tracking":1,
-  "adjacent pairs":["  ", "-7"],
+  "adjacent pairs":["_4", "-7"],
   "align": ["center", "bottom"],
   "fixed columns":3,
   "fixed lines": 3,
   "character": {
     " ":{
+      "kerning":false,
       "glyph": [
         "   ",
         "   ",
@@ -52,17 +53,30 @@
       "align": ["center", "middle"],
       "columns":2,
       "lines": 2,
-      "glyph": [
-        "╋╋",
-        "╋╋"
-      ]
+      "glyph": {
+        "normal":[
+          "┼┼",
+          "┼┼"
+        ],
+        "bold":[
+          "╋╋",
+          "╋╋"
+        ]
+      }
     },
     "$":{
-      "glyph": [
-        "┏╋┓",
-        "┗╋┓",
-        "┗╋┛"
-      ]
+      "glyph": {
+        "normal":[
+          "┏╋┓",
+          "┗╋┓",
+          "┗╋┛"
+        ],
+        "bold":[
+          "┏╋┓",
+          "┗╋┓",
+          "┗╋┛"
+        ]
+      }
     },
     "%":{
       "glyph": [
