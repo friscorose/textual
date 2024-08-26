@@ -35,8 +35,8 @@ class Digits:
         Font += Face+".json"
         return Font
 
-    #def load_glyphs(self, Face: str="basic_latin", Family: str="box/sans") -> None:
-    def load_glyphs(self, Face="seven_segment", Family="box/sans") -> None:
+    #def load_glyphs(self, Face="seven_segment", Family="box/sans") -> None:
+    def load_glyphs(self, Face: str="basic_latin", Family: str="box/sans") -> None:
         glyph_faces = LoadGlyphs('textual', self.set_face(Face, Family) )
         self.GLYPHS = json.loads( glyph_faces )
         fallback = self.GLYPHS.get('block', Face).replace(" ", "_")
@@ -44,9 +44,9 @@ class Digits:
             back_faces = LoadGlyphs('textual', self.set_face(fallback, Family) )
             faces = json.loads( back_faces )
             if faces:
-                for key in self.GLYPHS['character'].keys():
-                    faces['character'][key] = self.GLYPHS['character'][key]
-            self.GLYPHS = faces
+                for key in faces['character'].keys():
+                    if key not in self.GLYPHS['character']:
+                        self.GLYPHS['character'][key] = faces['character'][key]
 
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
@@ -82,17 +82,11 @@ class Digits:
             default = {"glyph":["┌┬┐","├"+token+"┤","└┴┘"]}
             face = faces_data.get(token, default)
             Thint = face.get('tracking', bbox_tracking)
-            if bbox_monospace:
-                Mhint = bbox_monospace
-                Hhint = bbox_height
-                Whint = bbox_width
-                Ahint = bbox_align
-            else:
-                bbox_apairs = self.GLYPHS.get('adjacent pairs',[])
-                Mhint = face.get('monospace', bbox_monospace)
-                Hhint = face.get('lines', bbox_height)
-                Whint = face.get('columns', bbox_width)
-                Ahint = face.get('align', bbox_align)
+            bbox_apairs = self.GLYPHS.get('adjacent pairs',[])
+            Mhint = face.get('monospace', bbox_monospace)
+            Hhint = face.get('lines', bbox_height)
+            Whint = face.get('columns', bbox_width)
+            Ahint = face.get('align', bbox_align)
             glyph = face.get('glyph', face )
             if isinstance( glyph, dict ):
                 if style.bold:
