@@ -21,17 +21,32 @@ class Digits:
 
     """
 
+    height = 3
+    width = 3
 
-    def __init__(self, text: str, style: StyleType = "") -> None:
+    def __init__(self, text: str, style: StyleType = "" ) -> None:
         self._text = text
         self._style = style
+        self.load_glyphs()
 
+    def set_face(self, Face="seven_segment", Family="box/sans") -> None:
+        Font = 'renderables/glyphs/'
+        Font += Family+"/"
+        Font += Face+".json"
+        return Font
 
-    glyph_family = "box/sans/basic_latin.json"
-    glyph_faces = LoadGlyphs('textual' , 'renderables/glyphs/' + glyph_family )
-    GLYPHS = json.loads( glyph_faces )
-    height = GLYPHS['fixed lines']
-    width = GLYPHS['fixed columns']
+    #def load_glyphs(self, Face: str="basic_latin", Family: str="box/sans") -> None:
+    def load_glyphs(self, Face="seven_segment", Family="box/sans") -> None:
+        glyph_faces = LoadGlyphs('textual', self.set_face(Face, Family) )
+        self.GLYPHS = json.loads( glyph_faces )
+        fallback = self.GLYPHS.get('block', Face).replace(" ", "_")
+        if fallback != Face:
+            back_faces = LoadGlyphs('textual', self.set_face(fallback, Family) )
+            faces = json.loads( back_faces )
+            if faces:
+                for key in self.GLYPHS['character'].keys():
+                    faces['character'][key] = self.GLYPHS['character'][key]
+            self.GLYPHS = faces
 
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
@@ -56,7 +71,6 @@ class Digits:
             bbox_align = self.GLYPHS['align']
             bbox_tracking = self.GLYPHS['tracking']
             bbox_monospace = self.GLYPHS['monospace']
-            bbox_apairs = self.GLYPHS['adjacent pairs']
             faces_data = self.GLYPHS['character']
         except:
             raise Exception("missing required glyph face data")
@@ -65,13 +79,20 @@ class Digits:
         g_strings: list[list[str]] =[[] for i in range(1, bbox_height+1)]
 
         for token in text:
-            default = {"columns":1,"lines":1,"glyph":[token]}
+            default = {"glyph":["┌┬┐","├"+token+"┤","└┴┘"]}
             face = faces_data.get(token, default)
-            Mhint = face.get('monospace', bbox_monospace)
             Thint = face.get('tracking', bbox_tracking)
-            Hhint = face.get('lines', bbox_height)
-            Whint = face.get('columns', bbox_width)
-            Ahint = face.get('align', bbox_align)
+            if bbox_monospace:
+                Mhint = bbox_monospace
+                Hhint = bbox_height
+                Whint = bbox_width
+                Ahint = bbox_align
+            else:
+                bbox_apairs = self.GLYPHS.get('adjacent pairs',[])
+                Mhint = face.get('monospace', bbox_monospace)
+                Hhint = face.get('lines', bbox_height)
+                Whint = face.get('columns', bbox_width)
+                Ahint = face.get('align', bbox_align)
             glyph = face.get('glyph', face )
             if isinstance( glyph, dict ):
                 if style.bold:
