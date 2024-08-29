@@ -35,8 +35,8 @@ class Digits:
         Font += Face+".json"
         return Font
 
-    #def load_glyphs(self, Face="seven_segment", Family="box/sans") -> None:
-    def load_glyphs(self, Face: str="basic_latin", Family: str="box/sans") -> None:
+    #def load_glyphs(self, Face: str="basic_latin", Family: str="box/sans") -> None:
+    def load_glyphs(self, Face="seven_segment", Family="box/sans") -> None:
         glyph_faces = LoadGlyphs('textual', self.set_face(Face, Family) )
         self.GLYPHS = json.loads( glyph_faces )
         fallback = self.GLYPHS.get('block', Face).replace(" ", "_")
@@ -79,7 +79,11 @@ class Digits:
         g_strings: list[list[str]] =[[] for i in range(1, bbox_height+1)]
 
         for token in text:
-            default = {"glyph":["┌┬┐","├"+token+"┤","└┴┘"]}
+            if ord( token ) > 32 and ord( token ) < 127:
+                default = {"glyph":["┌┬┐","├"+token+"┤","└┴┘"]}
+            else:
+                index = "{0:04x}".format( ord(token) )
+                default = {"glyph":[index[0]+"┬"+index[1],"├ ┤",index[2]+"┴"+index[3]]}
             face = faces_data.get(token, default)
             Thint = face.get('tracking', bbox_tracking)
             bbox_apairs = self.GLYPHS.get('adjacent pairs',[])
